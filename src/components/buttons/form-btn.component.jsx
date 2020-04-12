@@ -2,9 +2,12 @@ import React from 'react';
 
 import './form-btn.styles.scss';
 
-
-const FormBtn = ({children, ...otherProps}) => (
-	<button className="button" {...otherProps}>
+// might want to rename isGoogleSignIn to SSI aka isSingleSignIn 
+const FormBtn = ({children, isGoogleSignIn, ...otherProps}) => (
+	<button 
+		className={`${isGoogleSignIn ? 'single-sign-in' : ''} button`} 
+		{...otherProps}
+	>
 		{children}
 	</button>
 )

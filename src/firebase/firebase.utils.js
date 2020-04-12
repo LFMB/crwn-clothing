@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
+// database
 import 'firebase/firestore';
+// auth 
 import 'firebase/auth';
 
 // find app settings at firebase.com
