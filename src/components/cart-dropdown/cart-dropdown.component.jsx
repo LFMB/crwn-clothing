@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import FormBtn from '../buttons/form-btn.component';
 import CartItem from '../cart-item/cart-item.component';
@@ -26,8 +27,14 @@ const CartDropdown = ({cartItems}) => (
 
 // don't understand difference between mapStateToProps and mapDispatchToProps
 // prevents needless rerenders
+/*
 const mapStateToProps = state => ({
 	cartItems: selectCartItems(state)
 });
+*/
+
+const mapStateToProps = createStructuredSelector({
+	cartItems: selectCartItems
+})
 
 export default connect(mapStateToProps)(CartDropdown);
