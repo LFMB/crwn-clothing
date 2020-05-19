@@ -7,12 +7,12 @@ import FormBtn from '../buttons/form-btn.component';
 import CartItem from '../cart-item/cart-item.component';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors';
-
+import { toggleCartHidden } from  '../../redux/cart/cart.actions';
 
 import './cart-dropdown.styles.scss';
 
 
-const CartDropdown = ({cartItems, history}) => (
+const CartDropdown = ({cartItems, history, dispatch}) => (
 	<div className="cart-dropdown">
 		<div className="cart-items">
 		{
@@ -27,7 +27,10 @@ const CartDropdown = ({cartItems, history}) => (
 			)			
 		}
 		</div>
-		<FormBtn onClick={() => history.push('/checkout')}>Go to Checkout</FormBtn>
+		<FormBtn onClick={() => {
+			history.push('/checkout');
+			dispatch(toggleCartHidden());
+		} }>Go to Checkout</FormBtn>
 	</div>
 )
 
