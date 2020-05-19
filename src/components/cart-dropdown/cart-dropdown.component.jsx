@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const CartDropdown = ({cartItems, history}) => (
 			)			
 		}
 		</div>
-		<FormBtn onClick={() => history.push('/Checkout')}>Go to Checkout</FormBtn>
+		<FormBtn onClick={() => history.push('/checkout')}>Go to Checkout</FormBtn>
 	</div>
 )
 
