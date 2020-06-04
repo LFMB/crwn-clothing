@@ -13,12 +13,17 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 import Header from './components/header/header.component';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { 
+	auth,
+	createUserProfileDocument,
+	//addCollectionAndDocuments,
+} from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+// import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 import './App.css';
-
 
 class App extends React.Component {
 
@@ -26,8 +31,11 @@ class App extends React.Component {
 
   // use this lifecycle method for all
   // onAuthStateChanged() or onSnapshot() methods from the auth library
+  // app only mounts once so use this as a place to load data that needs to be snagged only once
   componentDidMount(){
-    const {setCurrentUser} = this.props;
+  	// brought in the store data collections into firebase
+    //const { setCurrentUser, collectionsArray } = this.props;
+    const { setCurrentUser} = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
      //  this.setState({currentUser: user });      
@@ -53,7 +61,15 @@ class App extends React.Component {
         });
       }
       setCurrentUser(userAuth);
+      /*
+      addCollectionAndDocuments('collections', 
+      	collectionsArray.map(
+      		({title, items}) => ({ title, items })
+      	)
+      )
+      */
     });
+
   }
 
   componentWillUnmount(){
@@ -82,7 +98,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+ // collectionsArray: selectCollectionsForPreview
 })
 
 const mapDispatchToProps = dispatch => ({
